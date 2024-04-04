@@ -6,27 +6,39 @@ import Formulario from "./Formulario.jsx"
 //creamos la funcionalidad de lo que vamos a ver en nuestro front
 function App() {
 
-  let [tareas, setTareas] = useState([]);
+  let [tareas, setTareas] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:3000/todo")
       .then(respuesta => respuesta.json())
       .then(tareas => setTareas(tareas))
-  },[])
+  }, [])
 
-  function crearTarea(tarea){
+  function crearTarea(tarea) {
     setTareas([...tareas, tarea])
     console.log(tarea)
   }
 
-  // function actualizarTarea(){
-  //   fetch("http://localhost:3000/todo/actualizar/:id([a-f0-9]{24})/:operacion(1|2)")
-  //   .then(respuesta => respuesta.text())
+  function actualizarEstado(id) {
 
-  // }
+    fetch(`http://localhost:3000/todo/actualizar/${id}/2`, {
+      method: "PUT"
+    })
+      .then(respuesta => respuesta.json())
+      .then(({ resultado }) => {
+        // console.log(resultado)
+        if (resultado === "ok") {
+          setTareas(tareas.map(tarea => {
+            if (tarea.id === id) {
+              return { ...tarea, terminada: !tarea.terminada }
 
-
-
+            }
+            return tarea;
+          }
+          ))
+        }
+      })
+  }
 
   function borrarTarea(id) {
     fetch(`http://localhost:3000/todo/borrar/${id}`, {
@@ -34,14 +46,13 @@ function App() {
     })
       .then(respuesta => respuesta.json())
       .then(({ resultado }) => {
-        console.log(resultado)
         if (resultado == "bien") {
           return setTareas(tareas.filter(tarea => tarea.id != id))
         }
         console.log("error")
       })
   }
-console.log(tareas)
+  console.log(tareas)
 
   return (
     <>
@@ -53,7 +64,10 @@ console.log(tareas)
             <input type="text" defaultValue="Aprender React" />
             <button className='boton'>Editar</button>
             <button className='boton' onClick={() => borrarTarea(tarea.id)}>Borrar</button>
-            <button className='estado'><span></span></button>
+            <button className={`estado ${tarea.terminada ? "terminada" : null}`} 
+                    onClick={() => actualizarEstado(tarea.id)}>
+              <span></span>
+            </button>
           </div>
         ))}
       </section>
