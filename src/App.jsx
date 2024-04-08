@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import './index.css'
 import Formulario from "./Formulario.jsx"
+import Tareas from "./Tareas.jsx"
 
 
 //creamos la funcionalidad de lo que vamos a ver en nuestro front
 function App() {
 
   let [tareas, setTareas] = useState([])
+
 
   useEffect(() => {
     fetch("http://localhost:3000/todo")
@@ -40,6 +42,17 @@ function App() {
       })
   }
 
+
+  function editarTarea(nuevaTarea) {
+    setTareas(tareas.map(tarea => {
+      if (tarea.id === nuevaTarea.id) {
+        return { ...tarea, tarea: nuevaTarea.tarea, terminada: nuevaTarea.terminada };
+      }
+      return tarea;
+    }));
+   
+  }
+
   function borrarTarea(id) {
     fetch(`http://localhost:3000/todo/borrar/${id}`, {
       method: "DELETE"
@@ -57,19 +70,16 @@ function App() {
   return (
     <>
       <Formulario crearTarea={crearTarea} />
-      <section className='tareas'>
-        {tareas.map(tarea => (
-          <div key={tarea.id} className='tarea'>
-            <h2 className='visible'>{tarea.tarea}</h2>
-            <input type="text" defaultValue="Aprender React" />
-            <button className='boton'>Editar</button>
-            <button className='boton' onClick={() => borrarTarea(tarea.id)}>Borrar</button>
-            <button className={`estado ${tarea.terminada ? "terminada" : null}`} 
-                    onClick={() => actualizarEstado(tarea.id)}>
-              <span></span>
-            </button>
-          </div>
-        ))}
+      <section className='tareas' key={tareas.id} >
+        {tareas.length > 0 ? tareas.map(tarea => 
+          <Tareas key={tarea.id}
+            id={tarea.id}
+            tarea={tarea.tarea}
+            terminada={tarea.terminada}
+            borrarTarea={borrarTarea}
+            actualizarEstado={actualizarEstado}
+            editarTarea={editarTarea} />) : <p>No hay Tareas</p>}
+
       </section>
     </>
   )
@@ -77,3 +87,4 @@ function App() {
 }
 
 export default App
+
