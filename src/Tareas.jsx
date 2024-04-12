@@ -23,7 +23,7 @@ function Tareas({ id, tarea, terminada, borrarTarea, actualizarEstado, editarTar
         })
             .then(respuesta => respuesta.json())
             .then(({ resultado }) => {
-                console.log(resultado)
+                // console.log(resultado)
 
                 //si la actualizacion se realizo bien
                 if (resultado === "ok") {

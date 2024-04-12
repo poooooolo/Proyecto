@@ -22,7 +22,7 @@ function App() {
   function crearTarea(tarea) {
 
     setTareas([...tareas, tarea])
-    console.log(tarea)
+    // console.log(tarea)
   }
 
   //creamos una funcion para actualizar el estado de las tareas pasandole el id de la tarea que se actualize
