@@ -16,7 +16,7 @@ function Tareas({ id, tarea, terminada, borrarTarea, actualizarEstado, editarTar
         setEditando(false)
 
         //enviamos una solicitud al servidor con el id correspondiente
-        fetch(`http://localhost:3000/todo/actualizar/${id}/1`, {
+        fetch(`https://proyectob.onrender.com/todo/actualizar/${id}/1`, {
             method: "PUT",
             body: JSON.stringify({ tarea: nuevaTarea }), //enviamos la nueva tarea en formato json
             headers: { "Content-type": "application/json" }
