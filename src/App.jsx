@@ -85,7 +85,7 @@ function App() {
         console.log("error")
       })
   }
-  console.log(tareas)
+  // console.log(tareas)
 
   return (
     <>

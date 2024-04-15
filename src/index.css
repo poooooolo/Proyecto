@@ -2,6 +2,7 @@
   margin:0;
   padding:0;
 }
+
 /*variables principales*/
 :root{
   --box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
@@ -11,15 +12,18 @@
   --border-radius: 20px;
 
 }
+
 body{
   font-family: var(--font-Encode);
   background-color: rgb(193, 194, 205);
 }
+
 input,button{
   -webkit-appearance:none;
   appearance:none;
   display:block;
 }
+
 /*estilización formulario*/
 form{
   font-size: 2em;
@@ -30,6 +34,7 @@ form{
   align-items: center;
   
 }
+
 /*estilización ¿que hay que hacer?*/
 form input[type="text"]{
   width: 30%;
@@ -42,6 +47,7 @@ form input[type="text"]{
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
+
 /*estilización boton crear tarea*/
 form input[type="submit"]{
   font-weight: 700;
@@ -53,11 +59,13 @@ form input[type="submit"]{
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
+
 /*estilización de los divs que vayan apareciendo al crear una tarea*/
 .tareas{
   width: 600px;
   margin: 20px auto 0;
 }
+
 .tarea{
   padding: 20px;
   margin-bottom: 20px;
@@ -67,6 +75,7 @@ form input[type="submit"]{
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
+
 .tarea h2{
   font-weight: 700;
   color: white;
@@ -84,10 +93,17 @@ form input[type="submit"]{
   box-shadow: var(--box-shadow);
   display: none;
 }
+
+.tarea p{
+  font-weight: 700;
+  color: white;
+}
+
 .tarea .visible{
   display: block;
   padding: 10px;
 } 
+
 .boton{
   font-weight: 700;
   color: rgb(117,117,117);
@@ -111,6 +127,7 @@ form input[type="submit"]{
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
+
 .estado span{
   display: block;
   width: 20px;
@@ -124,6 +141,7 @@ form input[type="submit"]{
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
+
 .terminada span{
   left: 30px;
   background-color: rgb(63, 118, 63);
