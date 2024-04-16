@@ -13,7 +13,7 @@ function App() {
 
   //cuando el componente se monta por primera vez, hacemos una solicitud GET a la api
   useEffect(() => {
-    fetch("http://localhost:3000/todo")
+    fetch("https://apitodo-vxrz.onrender.com/todo")
       .then(respuesta => respuesta.json())
       .then(tareas => setTareas(tareas))
   }, [])
@@ -28,7 +28,7 @@ function App() {
   //creamos una funcion para actualizar el estado de las tareas pasandole el id de la tarea que se actualize
   function actualizarEstado(id) {
 
-    fetch(`http://localhost:3000/todo/actualizar/${id}/2`, {
+    fetch(`https://apitodo-vxrz.onrender.com/todo/actualizar/${id}/2`, {
       method: "PUT"
     })
       .then(respuesta => respuesta.json())
@@ -71,7 +71,7 @@ function App() {
   function borrarTarea(id) {
 
     //hacemos una solicitud a la URL con el id correspondiente
-    fetch(`http://localhost:3000/todo/borrar/${id}`, {
+    fetch(`https://apitodo-vxrz.onrender.com/todo/borrar/${id}`, {
       method: "DELETE"
     })
       .then(respuesta => respuesta.json())
