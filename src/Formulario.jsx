@@ -12,7 +12,7 @@ function Formulario({crearTarea}) {
                 evento.preventDefault()
 
                 //hacemos una peticion post enviando los datos de la nueva tarea en json
-                fetch("http://localhost:3000/todo/crear", {
+                fetch("https://apitodo-gs7p.onrender.com/todo/crear", {
                     method: "POST",
                     body: JSON.stringify({ tarea: textoTemporal }),
                     headers: { "Content-type": "application/json" }
